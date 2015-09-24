@@ -1,0 +1,208 @@
+﻿/*RESET*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol, ul {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+/*----------------------------------------------------*/
+
+.calendar-wrapper {
+    background: #333;
+    padding: 3px;
+    border-radius: 4px;
+    font-family: arial;
+    width: 550px;
+    overflow: hidden;
+    margin: 3em auto;
+
+    .date-display-wrapper {
+        float: left;
+        width: 40%;
+
+        .day-name, .day-number {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .day-name {
+            border-radius: 4px 4px 0 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+            background: #e43737;
+            background: -moz-linear-gradient(top, #e43737 35%, #ba2828 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(35%,#e43737), color-stop(100%,#ba2828));
+            background: -webkit-linear-gradient(top, #e43737 35%,#ba2828 100%);
+            background: -o-linear-gradient(top, #e43737 35%,#ba2828 100%);
+            background: -ms-linear-gradient(top, #e43737 35%,#ba2828 100%);
+            background: linear-gradient(to bottom, #e43737 35%,#ba2828 100%);
+            filter: progid:dximage-transform.microsoft.gradient( start-colorstr='#e43737', end-colorstr='#ba2828',gradient-type=0 );
+            color: white;
+            padding: .5rem;
+            font-size: .9rem;
+        }
+
+        .day-number {
+            font-size: 6rem;
+            vertical-align: middle;
+            padding: 2.5rem 0;
+            color: #313131;
+            text-shadow: 0 -1px 0 black;
+            background: #ffffff;
+            background: -moz-linear-gradient(top, #ffffff 0%, #f7f7f7 10%, #ffffff 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(10%,#f7f7f7), color-stop(100%,#ffffff));
+            background: -webkit-linear-gradient(top, #ffffff 0%,#f7f7f7 10%,#ffffff 100%);
+            background: -o-linear-gradient(top, #ffffff 0%,#f7f7f7 10%,#ffffff 100%);
+            background: -ms-linear-gradient(top, #ffffff 0%,#f7f7f7 10%,#ffffff 100%);
+            background: linear-gradient(to bottom, #ffffff 0%,#f7f7f7 10%,#ffffff 100%);
+            filter: progid:dximage-transform.microsoft.gradient( start-colorstr='#ffffff', end-colorstr='#ffffff',gradient-type=0 );
+        }
+
+        .day-number-pages {
+            border-radius: 0 0 4px 4px;
+            height: 5px;
+            background: #bbbbbb;
+            background: -moz-linear-gradient(top, #bbbbbb 0%, #f7f7f7 25%, #bbbbbb 50%, #f7f7f7 75%, #bbbbbb 100%);
+            background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#bbbbbb), color-stop(25%,#f7f7f7), color-stop(50%,#bbbbbb), color-stop(75%,#f7f7f7), color-stop(100%,#bbbbbb));
+            background: -webkit-linear-gradient(top, #bbbbbb 0%,#f7f7f7 25%,#bbbbbb 50%,#f7f7f7 75%,#bbbbbb 100%);
+            background: -o-linear-gradient(top, #bbbbbb 0%,#f7f7f7 25%,#bbbbbb 50%,#f7f7f7 75%,#bbbbbb 100%);
+            background: -ms-linear-gradient(top, #bbbbbb 0%,#f7f7f7 25%,#bbbbbb 50%,#f7f7f7 75%,#bbbbbb 100%);
+            background: linear-gradient(to bottom, #bbbbbb 0%,#f7f7f7 25%,#bbbbbb 50%,#f7f7f7 75%,#bbbbbb 100%);
+            filter: progid:dximage-transform.microsoft.gradient( start-colorstr='#bbbbbb', end-colorstr='#bbbbbb',gradient-type=0 );
+        }
+    }
+
+    .calendar-display-wrapper {
+        float: right;
+        width: 60%;
+        background: white;
+        border-left: 3px solid #333333;
+        padding: 0.75rem;
+        min-height: 212px;
+        max-height: 212px;
+        box-sizing: border-box;
+
+        .navigation-wrapper {
+            display: table;
+            width: 100%;
+            color: #cccccc;
+            margin-bottom: .6rem;
+
+            .nav-button {
+                cursor: pointer;
+                transition: color .35s;
+
+                &:hover {
+                    color: #999999;
+                }
+            }
+
+            .previous-month, .month-year, .next-month {
+                display: table-cell;
+            }
+
+            .previous-month, .next-month {
+                font-weight: bold;
+                font-size: .85rem;
+                padding: .5rem;
+            }
+
+            .month-year {
+                text-align: center;
+                color: #777777;
+            }
+
+            .next-month {
+                text-align: right;
+            }
+        }
+
+        .calendar-table {
+            width: 100%;
+            font-size: .9rem;
+            font-weight: bold;
+            border-spacing: 0;
+
+            .day-labels {
+                color: #e43740;
+
+                th {
+                    padding-bottom: 0.75rem;
+                }
+            }
+
+            td, th {
+                border-right: 1px dashed #dddddd;
+
+                &:last-child {
+                    border: none;
+                }
+            }
+
+            td {
+                color: #999999;
+                text-align: center;
+                padding: .2rem 0;
+                transition: background .2s;
+
+                &.selectable {
+                    cursor: pointer;
+
+                    &:hover {
+                        background: #eeeeee;
+                    }
+                }
+
+                &.selected {
+                    background: #e43737;
+                    color: white;
+
+                    &:hover {
+                        background: #e43737;
+                    }
+                }
+            }
+        }
+    }
+}

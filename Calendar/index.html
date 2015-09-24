@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>JS Calendar Demo</title>
+    <link href="assets/css/style.css" rel="stylesheet" />
+    <script src="assets/js/calendar.js"></script>
+    <script>
+        window.onload = function () {
+            var calendar = new Calendar();
+            //calendar.setDate('10/20/2020'); //load with a different date
+            calendar.render('#calendar');
+        }
+    </script>
+</head>
+<body>
+    <div id="calendar"></div>
+</body>
+</html>
