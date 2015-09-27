@@ -92,26 +92,26 @@ Calendar.prototype.render = function (element) {
     }
 
     function buildCalendarBody() {
-        var currentRow = 0;
+        var currentCol = 0;
 
         calendarTableBody.innerHTML = '';
 
         var dateRow = document.createElement('tr');
         //This will add blank cells until the first day of the week is reached
-        while (currentRow < $this.getFirstDayInMonth()) {
+        while (currentCol < $this.getFirstDayInMonth()) {
             var td = $this._createElement('td', '', '');
             dateRow.appendChild(td);
-            currentRow++;
+            currentCol++;
         }
 
-        /* The currentRow var helps keep track of the row the day falls on.
+        /* The currentCol var helps keep track of the row the day falls on.
            This allows a new row to be added when 7th row is reached */
         var numberOfDays = $this.getNumberOfDays();
         for (var i = 1; i <= numberOfDays ; i++) {
             var cls = $this.date.day === i ? ' selected' : '';
 
-            if (currentRow === 7) {
-                currentRow = 0;
+            if (currentCol === 7) {
+                currentCol = 0;
                 dateRow = document.createElement('tr');
             }
 
@@ -130,7 +130,7 @@ Calendar.prototype.render = function (element) {
             dateRow.appendChild(td);
 
             calendarTableBody.appendChild(dateRow);
-            currentRow++;
+            currentCol++;
         }
 
         calendarTable.appendChild(calendarTableBody);
